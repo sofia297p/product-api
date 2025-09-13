@@ -17,9 +17,10 @@ Create a .env file in the root directory with your database connection string:
 DATABASE_URL="postgresql://user:password@localhost:5432/test_db"
 
 ```
-Then run migrations:
+Then run:
 ```bash
 npx prisma migrate deploy
+npx prisma generate
 ```
 ## Compile and run the project
 
