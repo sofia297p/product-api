@@ -1,5 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateProductDto } from './dto/create-product.dto';
+import { QueryProductsDto } from './dto/query-product.dto';
 
 
 @Injectable()
@@ -10,6 +12,9 @@ export class ProductsService {
 
     return await this.prisma.product.findMany({orderBy:{price:"asc"}});
 
+  }
+  async create(createProductDto: CreateProductDto) {
+   return await this.prisma.product.create({data: createProductDto});
   }
 
   async findById(id: number) {
@@ -22,7 +27,14 @@ export class ProductsService {
     return product;
   }
 
-
+  async getListOfProducts(queryProductDto: QueryProductsDto) {
+   return await this.prisma.product.findMany({
+    skip: (queryProductDto.pageIndex - 1) * queryProductDto.pageSize,
+    take: queryProductDto.pageSize,
+    orderBy:{[queryProductDto.sortField]:queryProductDto.sort}
+   })
+  }
+  
   async removeById(id: number) {
     await this.findById(id);
     

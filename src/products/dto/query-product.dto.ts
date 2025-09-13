@@ -18,9 +18,9 @@ export class QueryProductsDto {
 
   @IsEnum(ProductSortField)
   @IsOptional()
-  sortField?:ProductSortField
+  sortField:ProductSortField = ProductSortField.price;
 
   @IsEnum(SortDirection)
   @IsOptional()
-  sort?:SortDirection
+  sort:SortDirection = SortDirection.asc;
 }
