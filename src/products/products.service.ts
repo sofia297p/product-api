@@ -64,11 +64,11 @@ export class ProductsService {
 
     const amountOfProducts = await this.getAmount();
 
-    if(amountOfProducts % 2 === 0){
+    if(amountOfProducts % 2 !== 0){
 
       const sortedProducts = await this.sortAscByPrice();
 
-      const medianIndex = Math.ceil(sortedProducts.length / 2);
+      const medianIndex = Math.floor(sortedProducts.length / 2);
 
       return sortedProducts[medianIndex];
 
