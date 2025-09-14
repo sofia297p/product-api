@@ -6,7 +6,7 @@ import { ApiExtraModels, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @ApiTags("Products")
 @ApiExtraModels(QueryProductsDto)
-@Controller('products')
+@Controller("products")
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
@@ -23,7 +23,7 @@ export class ProductsController {
   }
 
   @Get("expensivest")
-  @ApiOperation({ summary: 'Get the most expensive product' })
+  @ApiOperation({ summary: "Get the most expensive product" })
   async getTheMostExpensiveProduct() {
     return this.productsService.getTheMostExpensiveProduct();
   }
@@ -46,23 +46,23 @@ export class ProductsController {
     return this.productsService.getAmount();
   }
 
-  @Get(':id')
+  @Get(":id")
   @ApiOperation({ summary: "Get product by ID" })
-  async findById(@Param('id', ParseIntPipe) id: number) {
+  async findById(@Param("id", ParseIntPipe) id: number) {
     return this.productsService.findById(id);
   }
 
 
-  @Delete(':id')
-  @ApiOperation({ summary: 'Delete a product by ID' })
+  @Delete(":id")
+  @ApiOperation({ summary: "Delete a product by ID" })
   @HttpCode(204)
-  async removeById(@Param('id', ParseIntPipe) id: number) {
+  async removeById(@Param("id", ParseIntPipe) id: number) {
     return this.productsService.removeById(+id);
   }
 
   @Delete()
   @HttpCode(204)
-  @ApiOperation({ summary: 'Delete all products' })
+  @ApiOperation({ summary: "Delete all products" })
   async removeAll() {
     return this.productsService.removeAll();
   }

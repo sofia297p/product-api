@@ -1,4 +1,4 @@
 export enum ProductSortField {
-  price = 'price',
-  name = 'name',
+  price = "price",
+  name = "name",
 }
